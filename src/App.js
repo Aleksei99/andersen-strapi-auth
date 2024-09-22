@@ -1,24 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import GoogleAuthRedirect from './GoogleAuthRedirect';
 import ProtectedPage from "./ProtectedPage";
+import GoogleAuth from "./GoogleAuth";
 
 const App = () => {
-    const loginWithGoogle = () => {
-        // Переходим на Google OAuth URL, который предоставляет Strapi
-        window.location.href = 'https://andersen-strapi.onrender.com/api/connect/google';
-    };
 
     return (
         <Router>
-            <div style={{ textAlign: 'center', marginTop: '50px' }}>
-                <h1>Google Auth with Strapi</h1>
-                <button onClick={loginWithGoogle}>Login with Google</button>
-
+            <div style={{textAlign: 'center', marginTop: '50px'}}>
                 <Routes>
+                    <Route path="/" element={<GoogleAuth/>}/>
                     {/* Добавляем маршрут для обработки перенаправления от Google */}
-                    <Route path="/auth/google/redirect" element={<GoogleAuthRedirect />} />
-                    <Route path="/protected" element={<ProtectedPage />} />
+                    <Route path="/auth/google/redirect" element={<GoogleAuthRedirect/>}/>
+                    <Route path="/protected" element={<ProtectedPage/>}/>
                 </Routes>
             </div>
         </Router>

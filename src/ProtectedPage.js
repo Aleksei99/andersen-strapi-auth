@@ -5,7 +5,8 @@ const ProtectedPage = () => {
     const navigate = useNavigate();
 
     const [userInput, setUserInput] = useState({
-        articleId: ''
+        articleId: '',
+        articleTitle: ''
     })
 
     const articleIdChangeHandler = (event) => {
@@ -13,6 +14,14 @@ const ProtectedPage = () => {
             return {
                 ...prevState,
                 articleId: event.target.value
+            }
+        })
+    }
+    const articleTitleChangeHandler = (event) => {
+        setUserInput((prevState) => {
+            return {
+                ...prevState,
+                articleTitle: event.target.value
             }
         })
     }
@@ -36,7 +45,7 @@ const ProtectedPage = () => {
             method: 'POST',
             body: JSON.stringify({
                 data: {
-                    "title": "From react"
+                    "title": userInput.articleTitle
                 }
             })
         });
@@ -63,6 +72,9 @@ const ProtectedPage = () => {
         <div style={{textAlign: 'center', marginTop: '50px'}}>
             <h1>Добро пожаловать в защищённую зону!</h1>
             <p>Вы успешно вошли в систему с помощью Google OAuth2.</p>
+            <input type="text"
+                   value={userInput.articleTitle}
+                   onChange={articleTitleChangeHandler}/>
             <button onClick={createArticle}>Create Article</button>
             <br/>
             <input type="number"

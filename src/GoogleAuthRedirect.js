@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 const GoogleAuthRedirect = () => {
-    const navigate = useNavigate(); // используем useNavigate вместо useHistory
+    const navigate = useNavigate();
 
     const fetchJwtToken = async () => {
 
